@@ -23,6 +23,11 @@ const flightSchema = new Schema({
     },
     departs: {
         type: Date,
-        default: new Date().toLocaleDateString
+        default: () => Date.now() + 365 * 24 * 60 * 60000
     }
-})
+}, {
+    timestamps: true
+});
+
+// compile the Schema into a model and exports it 
+module.exports = mongoose.model('Flight', flightSchema);
