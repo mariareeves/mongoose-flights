@@ -17,8 +17,49 @@
         <div>
             <%= flight.departs%>
         </div>
+        <br><br>
+        <h2>Destinations</h2>
+        <form action="/flights/<%= flight._id %>/destinations" method="POST">
+            <label>Destination:</label>
+            <select name="airport">
+                <option value="AUS">AUS</option>
+                <option value="DFW">DFW</option>
+                <option value="DEN">DEN</option>
+                <option value="LAX">LAX</option>
+                <option value="SAN">SAN</option>
+                <option value="JFK">JFK</option>
+                <option value="MIA">MIA</option>
+                <option value="GRU">GRU</option>
+            </select>
+            <br><br>
+            <label>Arrival</label>
+            <input type="datetime-local" name="arrival">
+            <input type="submit" value="add">
+        </form>
 
+        <% if (flight.destinations.length){ %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Airport</th>
+                        <th>Arrival Date</th>
 
+                    </tr>
+                </thead>
+                <tbody>
+                    <% flight.destinations.forEach(function(d) { %>
+                        <tr>
+                            <td>
+                                <%= d.airport %>
+                            </td>
+                            <td>
+                                <%= d.arrival.toLocaleDateString()%>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
 
-
-    </section>
+            <% } else { %>
+                <h5>No Destination Details Yet.</h5>
+                <% } %>
