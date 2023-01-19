@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 
     <section>
+        <a href="/flights/<%= flight._id%>/tickets/new">New Ticket</a>
         <div>Airport: </div>
         <div>
             <%= flight.airport%>
@@ -63,3 +64,29 @@
             <% } else { %>
                 <h5>No Destination Details Yet.</h5>
                 <% } %>
+
+                    <h3>Ticket</h3>
+                    <table>
+                        <thead>
+                            <th>
+                                Seat
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </thead>
+                        <% tickets.forEach(function(ticket) { %>
+                            <tr>
+                                <td>
+                                    <%= ticket.seat %>
+                                </td>
+                                <td>
+                                    <%= ticket.price %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </table>
+
+
+
+                    <%- include('../partials/footer')%>
